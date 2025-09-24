@@ -13,7 +13,7 @@
       <div class="text-center w-full max-w-[600px] mx-auto">
         <div class="flex flex-col items-center justify-center gap-6 mt-[2%] max-w-[500px] min-h-[450px] p-8 bg-gray-100 rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
           <h1 class="m-0 text-3xl text-gray-800">Logout</h1>
-          <img src="@/assets/images/logo.svg" alt="Admin Profile Photo" class="w-[120px] h-[120px] rounded-full">
+          <img src="@/assets/images/profile_image.jpg" alt="Admin Profile Photo" class="w-[120px] h-[120px] rounded-full">
           <h2 class="m-0 text-xl text-gray-800">{{ fullName }}</h2>
           <p class="m-0 text-lg text-gray-800">{{ email }}</p>
           <p class="m-0 text-base italic text-gray-600">You're currently on OSUSU</p>
