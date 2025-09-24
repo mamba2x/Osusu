@@ -3,7 +3,7 @@
         <!-- left side nav -->
         <div class="w-[0.1%] md:w-[17%] h-full bg-gray-300"></div>
         <!-- main content -->
-        <div class="w-[100%] md:w-[60%] h-full  flex flex-col items-center pt-[50px]">
+        <div class="w-[100%] md:w-[60%] min-h-[100%]  flex flex-col items-center pt-[50px] overflow-auto">
             <div class="w-full pl-[20px] mb-[20px]">
                 <i class="fa-solid fa-chevron-left cursor-pointer"></i>
             </div>
@@ -11,7 +11,7 @@
                 <h1>Group Profile</h1>
             </div>
             <!-- group image -->
-            <div class="w-[150px] h-[150px] rounded-full border-[5px] border-gray-200 bg-gray-500 mb-[20px] bg-center bg-cover bg-no-repeat"
+            <div class="w-[150px] min-h-[150px] rounded-full border-[5px] border-gray-200  mb-[20px] bg-center bg-cover bg-no-repeat"
                 style="background-image: url('/src/assets/images/user.png');"></div>
             <!-- group title -->
             <div
@@ -33,9 +33,10 @@
                 </div>
             </div>
             <!-- group members list -->
-            <div class="w-[90%] md:w-[74%] py-[10px] shadow-md rounded-md flex flex-col gap-3 justify-center pl-[20px]">
+            <div
+                class="w-[90%] md:w-[74%] py-[10px] shadow-md rounded-md flex flex-col gap-3 justify-center pl-[20px] mb-[10px]">
                 <h1 class="font-[500] text-[18px] mb-[20px]">Group Members</h1>
-                <div class="">
+                <div class="flex flex-col gap-2">
                     <!-- first user is admin -->
                     <div class="flex items-center gap-[10px]">
                         <!-- user image -->
@@ -44,6 +45,27 @@
                         <!-- user name -->
                         <h5 class="font-[500]">Emma</h5>
                         <div>( Group Admin )</div>
+                    </div>
+                    <div class="flex items-center gap-[10px]">
+                        <!-- user image -->
+                        <div class="w-[40px] h-[40px] rounded-full bg-gray-500 bg-center bg-cover bg-no-repeat"
+                            style="background-image: url('/src/assets/images/user.png');"></div>
+                        <!-- user name -->
+                        <h5 class="font-[500]">Emma</h5>
+                    </div>
+                    <div class="flex items-center gap-[10px]">
+                        <!-- user image -->
+                        <div class="w-[40px] h-[40px] rounded-full bg-gray-500 bg-center bg-cover bg-no-repeat"
+                            style="background-image: url('/src/assets/images/user.png');"></div>
+                        <!-- user name -->
+                        <h5 class="font-[500]">Emma</h5>
+                    </div>
+                    <div class="flex items-center gap-[10px]">
+                        <!-- user image -->
+                        <div class="w-[40px] h-[40px] rounded-full bg-gray-500 bg-center bg-cover bg-no-repeat"
+                            style="background-image: url('/src/assets/images/user.png');"></div>
+                        <!-- user name -->
+                        <h5 class="font-[500]">Emma</h5>
                     </div>
                 </div>
             </div>
