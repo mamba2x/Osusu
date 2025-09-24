@@ -20,6 +20,26 @@ const routeList = [
     path: '/Dashboard',
     name: 'Dashboard',
     component: () => import ('@/views/Dashboard.vue')
+  },
+  {
+    path: '/Groups',
+    name: 'Groups',
+    component: () => import ('@/views/Groups.vue')
+  },
+  {
+    path: '/Wallet',
+    name: 'Wallet',
+    component: () => import ('@/views/Wallet.vue')
+  },
+  {
+    path: '/Support',
+    name: 'Support',
+    component: () => import ('@/views/Support.vue')
+  },
+  {
+    path: '/Logout',
+    name: 'Logout',
+    component: () => import ('@/views/Logout.vue')
   }
 ]
 
