@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-content">
+  <div class="groups-content">
     <topnav @toggle-sidenav="toggleSidenav" />
     <div :class="['bg-black top-6 h-screen fixed pt-4 pb-4 text-center transition-transform duration-300 ease-in-out md:block md:w-1/5 md:mr-8', isSidenavOpen ? 'translate-x-0 z-50 w-[45%]' : 'translate-x-[-100%] z-50 w-[30%]', !isSidenavOpen && 'md:translate-x-0']">
       <img src="@/assets/images/logo.svg" class="m-[28%] ml-[12%] w-4/5 mb-[16%] max-w-full h-auto" alt="Osusu Logo">
