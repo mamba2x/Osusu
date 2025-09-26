@@ -1,7 +1,8 @@
 <template>
   <div class="groups-content">
     <topnav @toggle-sidenav="toggleSidenav" />
-    <div :class="['bg-[#1E3A8A] top-6 h-screen fixed pt-4 pb-4 text-center transition-transform duration-300 ease-in-out md:block md:w-1/5 md:mr-8', isSidenavOpen ? 'translate-x-0 z-50 w-[45%]' : 'translate-x-[-100%] z-50 w-[30%]', !isSidenavOpen && 'md:translate-x-0']">
+    <div
+      :class="['bg-[#1E3A8A] top-6 h-screen fixed pt-4 pb-4 text-center transition-transform duration-300 ease-in-out md:block md:w-1/5 md:mr-8', isSidenavOpen ? 'translate-x-0 z-50 w-[45%]' : 'translate-x-[-100%] z-50 w-[30%]', !isSidenavOpen && 'md:translate-x-0']">
       <img src="@/assets/images/logo.svg" class="m-[28%] ml-[12%] w-4/5 mb-[16%] max-w-full h-auto" alt="Osusu Logo">
       <sidenav label="Dashboard" href="/dashboard" />
       <sidenav label="Groups" href="/groups" />
@@ -9,8 +10,12 @@
       <sidenav label="Support" href="/support" />
       <sidenav label="Logout" href="/logout" />
     </div>
-    <main class="p-5 md:ml-[22%]">
-      <router-view />
+
+    <main class="p-5 md:ml-[20%]">
+      <!-- <router-view /> -->
+      <div class="min-w-full mt-[30px] flex justify-center ">
+        <router-link to="/Group-name/group-profile">Group Profile</router-link>
+      </div>
     </main>
   </div>
 </template>

@@ -5,12 +5,12 @@ import About from '@/components/About.vue';
 const features = [
   {
     title: 'Trust & Security',
-    description: 'At Asusu, we value trust above all. Each group is managed by an admin who ensures that only verified members can participate, keeping contributions safe and transparent.',
+    description: 'At Osusu, we value trust above all. Each group is managed by an admin who ensures that only verified members can participate, keeping contributions safe and transparent.',
     icon: '/src/assets/images/pen.png'
   },
   {
     title: 'Community & Unity',
-    description: 'Asusu is built for groups that grow together. By pooling resources within trusted circles, members support one another while achieving shared financial goals.',
+    description: 'Osusu is built for groups that grow together. By pooling resources within trusted circles, members support one another while achieving shared financial goals.',
     icon: '/src/assets/images/pen.png'
   },
   {
@@ -20,7 +20,7 @@ const features = [
   },
   {
     title: 'Convenience & Simplicity',
-    description: 'Managing contributions and payouts has never been easier. Asusu brings group savings into the digital age, making every transaction simple, secure, and trackable anytime, anywhere.',
+    description: 'Managing contributions and payouts has never been easier. Osusu brings group savings into the digital age, making every transaction simple, secure, and trackable anytime, anywhere.',
     icon: '/src/assets/images/pen.png'
   }
 ]
@@ -44,7 +44,7 @@ const features = [
         <a href="/login">Get Started</a>
       </div>
     </div>
-    
+
     <!-- Hero Content - FIXED -->
     <div class="flex justify-center items-center px-4 lg:px-8 py-12">
       <div class="text-center max-w-2xl">
@@ -53,7 +53,7 @@ const features = [
         <div class="mt-5 text-[17px] font-semibold text-gray-700 lg:text-[20px]">
           <p class="leading-relaxed">
             Discover a smarter way to save and support one another.
-            With Asusu, group savings turn into real opportunites.
+            With Osusu, group savings turn into real opportunites.
             Start today and grow together.
           </p>
         </div>
@@ -65,7 +65,7 @@ const features = [
       </div>
     </div>
   </div>
-  
+
   <!-- White Background Section for Partner Message -->
   <div class="bg-white mt-10">
     <!-- Partner Message -->
@@ -84,9 +84,9 @@ const features = [
         <h1 class="text-[32px] font-semibold lg:text-[40px]">Still wondering why you should partner with us?</h1>
       </div>
       <div class="mt-5 text-[17px] lg:text-[20px]">
-        <p>With Asusu, you don't just save you grow. Our platform makes group savings simple,
-           transparent and rewarding. 
-           Partner with us today an experience the power of unity.
+        <p>With Osusu, you don't just save you grow. Our platform makes group savings simple,
+          transparent and rewarding.
+          Partner with us today an experience the power of unity.
         </p>
       </div>
     </div>
@@ -96,19 +96,20 @@ const features = [
     <!-- Import and use About component -->
     <About :features="features" />
   </div>
-  
+
   <!-- Footer/CTA Section - FIXED AND CENTERED -->
   <div class="bg-blue-600 rounded-[30px] mx-4 lg:mx-60 mt-20 py-10 lg:py-17">
     <div class="text-center text-white  mx-auto px-4 lg:flex lg:px-10">
       <div>
         <h2 class="text-2xl lg:text-3xl font-bold mb-4 lg:text-start">Reach New Horizons</h2>
-       <p class="text-lg lg:text-xl leading-relaxed lg:text-start">
-         Embrace the savings Evolution! Sign up 
-         today and unlock new possibilities to 
-         grow with our friendly and powerful solution.
-       </p>
-     </div>
-     <div class="flex items-center justify-center"><img src="/src/assets/images/images.jpeg" alt="" class="hidden lg:block" width="250px" height="250px" style="border-radius: 20px;"></div>
+        <p class="text-lg lg:text-xl leading-relaxed lg:text-start">
+          Embrace the savings Evolution! Sign up
+          today and unlock new possibilities to
+          grow with our friendly and powerful solution.
+        </p>
+      </div>
+      <div class="flex items-center justify-center"><img src="/src/assets/images/images.jpeg" alt=""
+          class="hidden lg:block" width="250px" height="250px" style="border-radius: 20px;"></div>
     </div>
   </div>
 
@@ -125,7 +126,7 @@ const features = [
     </div>
     <div>
       <h1 class="font-semibold">Contact us</h1>
-      <p>support@tryasusu.com</p>
+      <p>support@tryOsusu.com</p>
       <p>08036748392</p>
       <p>07129928828</p>
     </div>
