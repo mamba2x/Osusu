@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen flex">
+  <div class="w-full h-screen flex bg-gray-100">
     <!-- left side nav -->
     <div class="w-[0.1%] md:w-auto h-full bg-gray-300">
       <SideBar />
@@ -10,9 +10,10 @@
         <!-- <Topnav /> -->
         <TopBar />
       </div>
-      <!-- page name -->
-      <div class="w-full pl-[30px] font-[500] text-[24px] mb-[20px]">
-        <h1>Dashboard</h1>
+      <!-- user name -->
+      <div class="w-full flex flex-col font-[500] px-[3%] text-[24px] mb-[40px]">
+        <h1><i class="fas fa-clock-rotate-left"></i> Transaction History</h1>
+
       </div>
 
     </div>
@@ -24,20 +25,8 @@
 <script setup>
 import SideBar from '@/components/sideBar.vue';
 import TopBar from '@/components/topBar.vue';
-import { onMounted } from "vue";
-import { useRouter } from "vue-router";
 
-const router = useRouter();
 
-onMounted(() => {
-  // ✅ Clear authentication info (localStorage/session/cookies)
-  // localStorage.removeItem("token"); // or whatever you use
-  // localStorage.removeItem("user");
-
-  // ✅ Redirect to guest page
-  router.push({ name: "Guest" });
-});
 </script>
-
 
 <style lang="scss" scoped></style>

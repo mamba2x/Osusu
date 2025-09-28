@@ -1,28 +1,31 @@
 <template>
-  <div class="support-content">
-    <topnav @toggle-sidenav="toggleSidenav" />
-    <div :class="['bg-black top-6 h-screen fixed pt-4 pb-4 text-center transition-transform duration-300 ease-in-out md:block md:w-1/5 md:mr-8', isSidenavOpen ? 'translate-x-0 z-50 w-[45%]' : 'translate-x-[-100%] z-50 w-[30%]', !isSidenavOpen && 'md:translate-x-0']">
-      <img src="@/assets/images/logo.svg" class="m-[28%] ml-[12%] w-4/5 mb-[16%] max-w-full h-auto" alt="Osusu Logo">
-      <sidenav label="Dashboard" href="/dashboard" />
-      <sidenav label="Groups" href="/groups" />
-      <sidenav label="Wallet" href="/wallet" />
-      <sidenav label="Support" href="/support" />
-      <sidenav label="Logout" href="/logout" />
+  <div class="w-full h-screen flex">
+    <!-- left side nav -->
+    <div class="w-[0.1%] md:w-auto h-full bg-gray-300">
+      <SideBar />
     </div>
-    <main class="p-5 md:ml-[22%]">
-      <router-view />
-    </main>
+    <!-- main content -->
+    <div class="w-[100%] md:w-full min-h-[100%]  flex flex-col items-center  overflow-auto">
+      <div class="w-full mb-[30px]">
+        <!-- <Topnav /> -->
+        <TopBar />
+      </div>
+      <!-- page name -->
+      <div class="w-full pl-[30px] font-[500] text-[24px] mb-[20px]">
+        <h1>Customer Support</h1>
+      </div>
+
+    </div>
+    <!-- right side nav -->
+    <!-- <div class="w-0 md:w-[23%] h-full bg-gray-300"></div> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import topnav from '@/components/topnav.vue';
-import sidenav from '@/components/sidenav.vue';
+import SideBar from '@/components/sideBar.vue';
+import TopBar from '@/components/topBar.vue';
 
-const isSidenavOpen = ref(false);
 
-const toggleSidenav = () => {
-  isSidenavOpen.value = !isSidenavOpen.value;
-};
 </script>
+
+<style lang="scss" scoped></style>

@@ -1,28 +1,124 @@
 <template>
-  <div class="dashboard-content">
-    <topnav @toggle-sidenav="toggleSidenav" />
-    <div :class="['bg-black top-6 h-screen fixed pt-4 pb-4 text-center transition-transform duration-300 ease-in-out md:block md:w-1/5 md:mr-8', isSidenavOpen ? 'translate-x-0 z-50 w-[45%]' : 'translate-x-[-100%] z-50 w-[30%]', !isSidenavOpen && 'md:translate-x-0']">
-      <img src="@/assets/images/logo.svg" class="m-[28%] ml-[12%] w-4/5 mb-[16%] max-w-full h-auto" alt="Osusu Logo">
-      <sidenav label="Dashboard" href="/dashboard" />
-      <sidenav label="Groups" href="/groups" />
-      <sidenav label="Wallet" href="/wallet" />
-      <sidenav label="Support" href="/support" />
-      <sidenav label="Logout" href="/logout" />
+  <div class="w-full h-screen flex bg-gray-100">
+    <!-- left side nav -->
+    <div class="w-[0.1%] md:w-auto h-full bg-gray-300">
+      <SideBar />
     </div>
-    <main class="p-5 md:ml-[22%]">
-      <router-view />
-    </main>
+    <!-- main content -->
+    <div class="w-[100%] md:w-full min-h-[100%]  flex flex-col items-center  overflow-auto">
+      <div class="w-full mb-[30px]">
+        <!-- <Topnav /> -->
+        <TopBar />
+      </div>
+      <!-- user name -->
+      <div class="w-full flex flex-col  px-[3%] text-[24px] mb-[40px]">
+        <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, Henry</h1>
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+          <h2 class="text-gray-500 text-sm font-medium mb-2">Total Balance</h2>
+          <div class="flex items-baseline mb-4 ">
+            <span class="text-3xl font-bold text-gray-800">₦245,780.50</span>
+          </div>
+          <div class="flex gap-2 text-[16px] w-full justify-between md:justify-start">
+            <button
+              class="bg-blue-600 text-white px-4 py-2 rounded-lg flex cursor-pointer items-center hover:bg-blue-700 transition-colors">
+              <i class="fas fa-plus mr-2"></i> Add Money
+            </button>
+            <button
+              class="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer rounded-lg flex items-center hover:bg-blue-50 transition-colors">
+              <i class="fas fa-exchange-alt mr-2"></i> Transfer
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="grid w-full px-[3%] mb-[10px] grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Groups Section -->
+        <div class="bg-white rounded-xl shadow-sm  p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold text-gray-800">Recent Groups</h2>
+            <div v-if="groups.length > 0">
+              <a href="/groups" class="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors">View
+                All</a>
+            </div>
+          </div>
+
+          <div v-if="groups.length > 0" class="flex flex-col gap-4">
+            <!-- Group Item 1 -->
+            <GroupCard v-for="group in mainGroups" :key="group.id" :members="group.members"
+              :contributionAmount="group.contributionAmount" :bgImage="group.bgImage" :groupName="group.groupName"
+              :id="group.id" :activity="group.activity" :isAdmin="group.isAdmin" />
+          </div>
+          <div v-else class="w-full text-gray-500 flex justify-center items-center">Please Join or create a group <a
+              href="/groups" class="ml-1 text-blue-400 underline">here</a></div>
+
+          <!-- <button
+            class="w-full cursor-pointer mt-6 border border-dashed border-gray-300 text-gray-500 py-3 rounded-lg font-medium flex items-center justify-center hover:border-blue-300 hover:text-blue-600 transition-colors">
+            <i class="fas fa-plus mr-2"></i> Create New Group
+          </button> -->
+        </div>
+
+        <!-- Savings Balance Card -->
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Savings Balance</h2>
+
+          <div class="space-y-4">
+            <!-- Personal Savings -->
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-medium text-gray-800">Personal Savings</h3>
+                <i class="fas fa-user text-blue-600"></i>
+              </div>
+              <p class="text-2xl font-bold text-gray-800">₦85,450</p>
+            </div>
+
+            <!-- Emergency Fund -->
+            <div class="p-4 bg-yellow-50 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-medium text-gray-800">Emergency Fund</h3>
+                <i class="fas fa-shield-alt text-yellow-600"></i>
+              </div>
+              <p class="text-2xl font-bold text-gray-800">₦160,330.50</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-100">
+            <h3 class="font-medium text-gray-800 mb-2">Quick Actions</h3>
+            <div class="grid grid-cols-2 gap-2">
+              <button
+                class="cursor-pointer bg-blue-50 text-blue-700 py-2 rounded-lg font-medium text-sm flex items-center justify-center hover:bg-blue-100 transition-colors">
+                <i class="fas fa-download mr-2"></i> Deposit
+              </button>
+              <button
+                class="cursor-pointer bg-blue-50 text-blue-700 py-2 rounded-lg font-medium text-sm flex items-center justify-center hover:bg-blue-100 transition-colors">
+                <i class="fas fa-upload mr-2"></i> Withdraw
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- right side nav -->
+    <!-- <div class="w-0 md:w-[23%] h-full bg-gray-300"></div> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import topnav from '@/components/topnav.vue';
-import sidenav from '@/components/sidenav.vue';
+import GroupCard from '@/components/cards/groupCard.vue';
+import SideBar from '@/components/sideBar.vue';
+import TopBar from '@/components/topBar.vue';
+import { useGroupStore } from '@/stores/groups';
 
-const isSidenavOpen = ref(false);
+const { groups } = useGroupStore()
+const count = 0;
+var mainGroups = []
+for (let index = 0; index < 3; index++) {
+  mainGroups.push(groups[index]);
 
-const toggleSidenav = () => {
-  isSidenavOpen.value = !isSidenavOpen.value;
-};
+}
+console.log(mainGroups)
+
+
 </script>
+
+<style lang="scss" scoped></style>

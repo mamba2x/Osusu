@@ -28,9 +28,19 @@ const routeList = [
     component: () => import('@/views/Groups.vue'),
   },
   {
-    path: '/Wallet',
-    name: 'Wallet',
-    component: () => import('@/views/Wallet.vue'),
+    path: '/transaction-history',
+    name: 'Transaction History',
+    component: () => import('@/views/TransactionPage.vue'),
+  },
+  {
+    path: '/stash',
+    name: 'Stash',
+    component: () => import('@/views/Stash.vue'),
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: () => import('@/views/Notifications.vue'),
   },
   {
     path: '/Support',
@@ -43,7 +53,7 @@ const routeList = [
     component: () => import('@/views/Logout.vue'),
   },
   {
-    path: '/Group-name/group-profile',
+    path: '/groups/:id/group-profile',
     name: 'Group-members',
     component: () => import('@/views/Members.vue'),
   },
