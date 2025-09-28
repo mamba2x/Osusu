@@ -43,7 +43,7 @@ const routeList = [
     component: () => import('@/views/Logout.vue'),
   },
   {
-    path: '/Group-name/group-members',
+    path: '/Group-name/group-profile',
     name: 'Group-members',
     component: () => import('@/views/Members.vue'),
   },
