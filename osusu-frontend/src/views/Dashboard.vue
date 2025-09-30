@@ -98,16 +98,24 @@
 
 
     </div>
-    <!-- right side nav -->
-    <!-- <div class="w-0 md:w-[23%] h-full bg-gray-300"></div> -->
   </div>
 </template>
 
 <script setup>
 import GroupCard from '@/components/cards/groupCard.vue';
+// import { ref, onMounted } from 'vue'
 import SideBar from '@/components/sideBar.vue';
 import TopBar from '@/components/topBar.vue';
 import { useGroupStore } from '@/stores/groups';
+// import { useAuthApi } from '@/composables/useAuthApi';
+// const userData = ref(null)
+
+// const { loginApi } = useAuthApi()
+// onMounted(async () => {
+//   const response = await loginApi("admin@company.com", "admin")
+//   userData.value = response.userInfo
+//   console.log(userData.value);
+// })
 
 const { groups } = useGroupStore()
 const count = 0;

@@ -31,11 +31,11 @@ const router = useRouter();
 
 onMounted(() => {
   // ✅ Clear authentication info (localStorage/session/cookies)
-  // localStorage.removeItem("token"); // or whatever you use
+  // localStorage.removeItem("accessToken"); // or whatever you use
   // localStorage.removeItem("user");
 
   // ✅ Redirect to guest page
-  router.push({ name: "Guest" });
+  router.push({ name: "Login" });
 });
 </script>
 
