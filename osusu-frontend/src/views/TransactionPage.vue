@@ -9,22 +9,35 @@
       <div class="w-full mb-[30px]">
         <!-- <Topnav /> -->
         <TopBar />
+
+      <div class="flex justify-between m-5">
+        <div>
+          <h1 class="font-bold text-[20px] capitalize text-gray-600">my stash</h1>
+          <p class="font-medium text-gray-500">Your personal savings and financial goal</p>
+        </div>
+        <div class="flex gap-5">
+          <button class="h-10 bg-primary-600 text-white px-3 rounded-lg bg-[#2563eb] font-medium flex items-center hover:bg-[#1d4ed8] transition-colors"> <i class="fa fa-plus"></i> create new stash</button>
+        </div>
+      </div>
+    <Jose />
+    <Goal />
       </div>
       <!-- user name -->
-      <div class="w-full flex flex-col font-[500] px-[3%] text-[24px] mb-[40px]">
-        <h1><i class="fas fa-clock-rotate-left"></i> Transaction History</h1>
-
-      </div>
+ 
 
     </div>
     <!-- right side nav -->
     <!-- <div class="w-0 md:w-[23%] h-full bg-gray-300"></div> -->
+     
   </div>
+  
 </template>
 
 <script setup>
 import SideBar from '@/components/sideBar.vue';
 import TopBar from '@/components/topBar.vue';
+import Goal from '@/components/trans-card/goal.vue';
+import Jose from '@/components/trans-card/jose.vue';
 
 
 </script>
