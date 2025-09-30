@@ -12,7 +12,8 @@
       </div>
       <!-- user name -->
       <div class="w-full flex flex-col  px-[3%] text-[24px] mb-[40px]">
-        <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, Henry</h1>
+        <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, {{ userDetails.firstname ??
+          userDetails.message }}</h1>
         <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
           <h2 class="text-gray-500 text-sm font-medium mb-2">Total Balance</h2>
           <div class="flex items-baseline mb-4 ">
@@ -103,19 +104,20 @@
 
 <script setup>
 import GroupCard from '@/components/cards/groupCard.vue';
-// import { ref, onMounted } from 'vue'
 import SideBar from '@/components/sideBar.vue';
 import TopBar from '@/components/topBar.vue';
 import { useGroupStore } from '@/stores/groups';
-// import { useAuthApi } from '@/composables/useAuthApi';
-// const userData = ref(null)
+import { useUserStore } from '@/stores/userAuth';
+import { ref } from 'vue';
 
-// const { loginApi } = useAuthApi()
-// onMounted(async () => {
-//   const response = await loginApi("admin@company.com", "admin")
-//   userData.value = response.userInfo
-//   console.log(userData.value);
-// })
+const userStore = useUserStore();
+const userDetails = ref()
+console.log(userStore.userData)
+if (!userStore.userData) {
+  userDetails.value = { message: "No user data" }
+} else {
+  userDetails.value = userStore.userData
+}
 
 const { groups } = useGroupStore()
 const count = 0;
@@ -124,7 +126,7 @@ for (let index = 0; index < 3; index++) {
   mainGroups.push(groups[index]);
 
 }
-console.log(mainGroups)
+// console.log(mainGroups)
 
 
 </script>

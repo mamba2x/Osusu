@@ -75,9 +75,13 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('accessToken')
   const refreshTokenExists = localStorage.getItem('refreshToken')
 
-  if (to.meta.requiresAuth && !isLoggedIn && !refreshTokenExists) {
+  if (to.meta.requiresAuth && (!isLoggedIn || !refreshTokenExists)) {
     next({ name: 'Login' }) // not logged in → go to login
-  } else if ((to.name === 'Login' || to.name === 'Signup') && isLoggedIn && refreshTokenExists) {
+  } else if (
+    (to.name === 'Login' || to.name === 'Signup' || to.name === 'Guest') &&
+    isLoggedIn &&
+    refreshTokenExists
+  ) {
     next({ name: 'Dashboard' }) // logged-in users can't access login/signup
   } else {
     next() // allow navigation

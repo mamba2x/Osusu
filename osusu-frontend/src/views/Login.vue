@@ -2,13 +2,16 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userAuth'
+import { useAuthStore } from '@/stores/auth';
 
 
 const router = useRouter();
 
 
 // fetch fucntion
+const userStore = useUserStore()
 const { loginUser } = useUserStore()
+const auth = useAuthStore();
 
 
 // Reactive form data
@@ -50,15 +53,19 @@ const handleLogin = async () => {
     // Perform login logic here (e.g., API call)
     const user = await loginUser(form.value.email, form.value.password)
     if (!user.response) {
-      localStorage.setItem('accessToken', user.accessToken)
-      localStorage.setItem('refreshToken', user.userInfo.jwt_refresh_token)
+      const tokens = {
+        accessToken: user.accessToken,
+        refreshToken: user.userInfo.jwt_refresh_token,
+      };
 
-      console.log(localStorage.getItem('accessToken'))
-      console.log(localStorage.getItem('refreshToken'))
-      return console.log(user)
+      userStore.userData = user.userInfo
+      auth.login(tokens);
+      router.push({ name: "Dashboard" });
+
+
       // router.push('/dashboard')
     }
-    console.log(user.response.data.message)
+    errors.value.loginError = `${user.response.data.message}`
   }
 }
 </script>
@@ -103,7 +110,8 @@ const handleLogin = async () => {
                   <input id="email" type="email" v-model="form.email" @input="validateField('email')"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Email address" required>
-                  <p v-if="errors.email" class="text-red-500 text-xs mt-1">{{ errors.email }}</p>
+                  <p v-if="(errors.email || errors.loginError)" class="text-red-500 text-xs mt-1">{{ (errors.email ||
+                    errors.loginError) }}</p>
                 </div>
               </div>
 
