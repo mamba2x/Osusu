@@ -10,8 +10,7 @@
             </button>
 
             <!-- Title -->
-            <h2
-                class="text-xl sm:text-2xl font-bold mb-6 text-center bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 text-center  bg-clip-text text-black">
                 Join Group
             </h2>
 
@@ -24,7 +23,7 @@
                     class="w-full border rounded-xl px-4 py-3 mb-5 text-sm sm:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
                     @input="groupCode = groupCode.replace(/\D/g, '')" />
                 <button
-                    class="bg-gradient-to-r from-blue-500 to-emerald-600 text-white w-full py-3 rounded-xl font-semibold text-sm sm:text-lg hover:opacity-90 transition shadow-lg cursor-pointer"
+                    class="bg-blue-500 text-white w-full py-3 rounded-xl font-semibold text-sm sm:text-lg hover:opacity-90 transition shadow-lg cursor-pointer"
                     @click="fetchGroup">
                     Continue
                 </button>
@@ -66,7 +65,7 @@
                 </label>
 
                 <button
-                    class="bg-gradient-to-r from-blue-500 to-emerald-600 text-white w-full py-3 mt-6 rounded-xl font-semibold text-sm sm:text-lg hover:opacity-90 transition shadow-lg disabled:opacity-50 cursor-pointer"
+                    class="bg-blue-500 text-white w-full py-3 mt-6 rounded-xl font-semibold text-sm sm:text-lg hover:opacity-90 transition shadow-lg disabled:opacity-50 cursor-pointer"
                     :disabled="!agreed" @click="handleJoin">
                     Request to Join
                 </button>

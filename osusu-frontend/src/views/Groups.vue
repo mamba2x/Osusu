@@ -25,7 +25,7 @@
 
             <!--  Modal (pops up when button is clicked) -->
             <div v-if="showModal"
-              class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+              class="fixed inset-0 bg-black/50 backdrop-blur-[4px] flex items-center justify-center z-50">
               <JoinGroupModal @close="showModal = false" />
             </div>
 
