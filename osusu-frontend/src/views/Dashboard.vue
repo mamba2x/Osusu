@@ -36,13 +36,13 @@
         <div class="bg-white rounded-xl shadow-sm  p-6">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-lg font-semibold text-gray-800">Recent Groups</h2>
-            <div v-if="groups.length > 0">
+            <div v-if="mainGroups.length > 0">
               <a href="/groups" class="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors">View
                 All</a>
             </div>
           </div>
 
-          <div v-if="groups.length > 0" class="flex flex-col gap-4">
+          <div v-if="mainGroups.length > 0" class="flex flex-col gap-4">
             <!-- Group Item 1 -->
             <GroupCard v-for="group in mainGroups" :key="group.id" :members="group.members"
               :contributionAmount="group.contributionAmount" :bgImage="group.bgImage" :groupName="group.groupName"
@@ -51,10 +51,7 @@
           <div v-else class="w-full text-gray-500 flex justify-center items-center">Please Join or create a group <a
               href="/groups" class="ml-1 text-blue-400 underline">here</a></div>
 
-          <!-- <button
-            class="w-full cursor-pointer mt-6 border border-dashed border-gray-300 text-gray-500 py-3 rounded-lg font-medium flex items-center justify-center hover:border-blue-300 hover:text-blue-600 transition-colors">
-            <i class="fas fa-plus mr-2"></i> Create New Group
-          </button> -->
+
         </div>
 
         <!-- Savings Balance Card -->
@@ -110,32 +107,41 @@ import { useGroupStore } from '@/stores/groups';
 import { useUserStore } from '@/stores/userAuth';
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
+import { onBeforeMount } from 'vue';
 
 const auth = useAuthStore();
+const { fetchGroups } = useGroupStore();
+// onBeforeMount(async () => {
+const mygroups = await fetchGroups(auth.accessToken);
+// })
 
 const userStore = useUserStore();
-const userDetails = ref()
+const userDetails = ref({})
 const userTest = ref()
 if (!userStore.userData) {
   userTest.value = await userStore.getUser(auth.accessToken)
-  if (!userTest.value.userInfo) {
-    userDetails.value = null
-
-  } else {
-
-    userDetails.value = userTest.value.userInfo
-  }
+  userDetails.value = userTest.value.userInfo ?? {}
 } else {
   userDetails.value = userStore.userData
 }
-
 const { groups } = useGroupStore()
+// const { myGroups } = useGroupStore()
 const count = 0;
 var mainGroups = []
-for (let index = 0; index < 3; index++) {
-  mainGroups.push(groups[index]);
+// for (let index = 0; index < 3; index++) {
+//   mainGroups.push(groups[index])
+// }
+if (mygroups.length < 3) {
+  for (let index = 0; index < mygroups.length; index++) {
+    mainGroups.push(mygroups[index])
+  }
 }
-// console.log(mainGroups)
+if (mygroups.length > 3) {
+  for (let index = 0; index < 3; index++) {
+    mainGroups.push(mygroups[index])
+  }
+}
+// console.log(mygroups)
 
 
 </script>

@@ -41,14 +41,12 @@ export const useUserStore = defineStore('user', () => {
     } catch (error) {
       const status = error.response.status
       const message = error.response.data.message
-      if (status == 404) {
-        auth.logout()
-        return router.push({ name: 'Login' })
-      }
+
       if (status == 403 && message == 'Token is not valid') {
         try {
           const refresh_response = await auth.tokenRefresh(auth.refreshToken)
           const newAccessToken = refresh_response.data.access_token
+          localStorage.setItem('access_token', newAccessToken)
           return await getUser(newAccessToken)
         } catch (err) {
           auth.logout()
@@ -59,6 +57,8 @@ export const useUserStore = defineStore('user', () => {
         auth.logout()
         return router.push({ name: 'Login' })
       }
+      auth.logout()
+      return router.push({ name: 'Login' })
     }
   }
 

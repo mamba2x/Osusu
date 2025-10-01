@@ -1,117 +1,60 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useGroupAuthStore } from './groupAuth'
+import { useAuthStore } from './auth.js'
+import router from '@/router'
 
 export const useGroupStore = defineStore('group', () => {
-  const groups = ref([
-    {
-      id: 1,
-      groupName: 'Savings Circle',
-      activity: 'Monthly Contributions',
-      contributionAmount: 10000,
-      members: 12,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 2,
-      groupName: 'Travel Fund',
-      activity: 'Weekly Savings',
-      contributionAmount: 5000,
-      members: 8,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 3,
-      groupName: 'Business Members',
-      activity: 'Quarterly Investment',
-      contributionAmount: 50000,
-      members: 5,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: false,
-    },
-    {
-      id: 4,
-      groupName: 'Business Partners',
-      activity: 'Quarterly Investment',
-      contributionAmount: 50000,
-      members: 5,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 5,
-      groupName: 'Wedding Savings',
-      activity: 'Bi-Weekly Contributions',
-      contributionAmount: 20000,
-      members: 15,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: false,
-    },
-    {
-      id: 6,
-      groupName: 'Medical Fund',
-      activity: 'Emergency Pool',
-      contributionAmount: 15000,
-      members: 10,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 7,
-      groupName: 'Tech Startups',
-      activity: 'Monthly Investment',
-      contributionAmount: 75000,
-      members: 7,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 8,
-      groupName: 'Church Group',
-      activity: 'Tithe & Welfare Contributions',
-      contributionAmount: 5000,
-      members: 25,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: false,
-    },
-    {
-      id: 9,
-      groupName: 'Football Fans Club',
-      activity: 'Weekly Entertainment Fund',
-      contributionAmount: 3000,
-      members: 20,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 10,
-      groupName: 'Book Club',
-      activity: 'Monthly Reading Fund',
-      contributionAmount: 2500,
-      members: 18,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: false,
-    },
-    {
-      id: 11,
-      groupName: 'Community Builders',
-      activity: 'Quarterly Projects',
-      contributionAmount: 40000,
-      members: 30,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: true,
-    },
-    {
-      id: 12,
-      groupName: 'Family Support',
-      activity: 'Monthly Family Pool',
-      contributionAmount: 12000,
-      members: 9,
-      bgImage: '/src/assets/images/user.png',
-      isAdmin: false,
-    },
-  ])
+  const myGroups = ref([])
+  const auth = useAuthStore()
+  const { getGroups } = useGroupAuthStore()
 
-  return { groups }
+  async function fetchGroups() {
+    const data = await getGroups(auth.accessToken)
+
+    // ✅ if backend responded with an error
+    if (data.response) {
+      const status = data.response.status
+      const message = data.response.data.message
+
+      if (status === 403 && message === 'Token is not valid') {
+        // try refreshing the token
+        const refresh_response = await auth.tokenRefresh(auth.refreshToken)
+        if (!refresh_response.response) {
+          const newAccessToken = refresh_response.data.access_token
+          auth.accessToken = newAccessToken
+          // retry with new token
+          return await fetchGroups()
+        } else {
+          auth.logout()
+          return router.push({ name: 'Login' })
+        }
+      }
+
+      // other errors
+      if ([404, 401, 500].includes(status)) {
+        // console.log(message)
+      }
+      return
+    }
+
+    // ✅ if successful, map response
+    try {
+      myGroups.value = data.map((item) => ({
+        id: item.group._id ?? 'N/A',
+        groupName: item.group.groupname ?? 'N/A',
+        activity: item.group.paymentCycle ?? 'N/A',
+        contributionAmount: item.group.paymentAmount ?? 'N/A',
+        members: item.group.totalmembers ?? 'N/A',
+        bgImage: item.group.groupImg ?? '/src/assets/images/user.png',
+        isAdmin: item.isAdmin ?? false,
+      }))
+
+      return myGroups.value
+    } catch (error) {
+      console.error('Error mapping groups:', error)
+    }
+  }
+
+  return { myGroups, fetchGroups }
 })

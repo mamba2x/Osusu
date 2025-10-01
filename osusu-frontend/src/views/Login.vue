@@ -78,7 +78,14 @@ const handleLogin = async () => {
     <div class="flex lg:flex-row flex-col w-full max-w-6xl">
       <div class="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start lg:pl-12">
         <div class="hidden lg:flex lg:flex-col items-center lg:items-start text-center lg:text-left max-w-md">
-          <img src="/src/assets/images/logo.svg" alt="Logo" width="150px" class="mb-6">
+          <!-- <img src="/src/assets/images/logo.svg" alt="Logo" width="150px" class="mb-6"> -->
+          <!-- logo -->
+          <div class="flex items-center">
+            <div class="w-15 h-15 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+              <i class="fas fa-piggy-bank text-white text-[30px]"></i>
+            </div>
+            <h1 class="text-[30px] font-bold text-gray-800">Osusu</h1>
+          </div>
           <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
             Bridging the Gap between Groups and Opportunites
           </h1>
@@ -89,7 +96,13 @@ const handleLogin = async () => {
         </div>
 
         <div class="lg:hidden flex flex-col items-center text-center mb-8">
-          <img src="/src/assets/images/logo.svg" alt="Logo" width="150px" class="mb-4">
+          <div class="flex items-center">
+            <div class="w-15 h-15 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+              <i class="fas fa-piggy-bank text-white text-[30px]"></i>
+            </div>
+            <h1 class="text-[30px] font-bold text-gray-800">Osusu</h1>
+          </div>
+          <!-- <img src="/src/assets/images/logo.svg" alt="Logo" width="150px" class="mb-4"> -->
           <h2 class="text-xl font-bold text-gray-900">Bridging Gaps in Rural Microfinance</h2>
         </div>
       </div>

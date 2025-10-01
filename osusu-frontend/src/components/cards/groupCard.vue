@@ -3,7 +3,7 @@
         class="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
         <div class="flex items-center text-[16px]">
             <!-- Avatar box with background image -->
-            <div class="min-w-[48px] h-[48px] rounded-full flex items-center justify-center mr-4 bg-cover bg-center"
+            <div class="min-w-[48px] h-[48px] rounded-full flex items-center justify-center bg-[gray] mr-4 bg-cover bg-center"
                 :style="{ backgroundImage: `url(${bgImage})` }">
                 <!-- <i class="fas fa-users text-white drop-shadow-md"></i> -->
             </div>

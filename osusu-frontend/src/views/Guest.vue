@@ -32,7 +32,13 @@ const features = [
     <!-- Header -->
     <div class="flex justify-evenly items-center p-4 lg:px-29 py-5">
       <div>
-        <img src="/src/assets/images/logo.svg" alt="Logo" width="120px">
+        <!-- <img src="/src/assets/images/logo.svg" alt="Logo" width="120px"> -->
+        <div class="flex items-center">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+            <i class="fas fa-piggy-bank text-white text-xl"></i>
+          </div>
+          <h1 class="text-xl font-bold text-gray-800">Osusu</h1>
+        </div>
       </div>
       <div class="hidden lg:flex gap-10 text-[18px] font-semibold">
         <a href="#" class="hover:text-blue-600">Terms</a>
@@ -44,7 +50,7 @@ const features = [
         <a href="/login">Get Started</a>
       </div>
     </div>
-    
+
     <!-- Hero Content - FIXED -->
     <div class="flex justify-center items-center px-4 lg:px-8 py-12">
       <div class="text-center max-w-2xl">
@@ -65,7 +71,7 @@ const features = [
       </div>
     </div>
   </div>
-  
+
   <!-- White Background Section for Partner Message -->
   <div class="bg-white mt-10">
     <!-- Partner Message -->
@@ -85,8 +91,8 @@ const features = [
       </div>
       <div class="mt-5 text-[17px] lg:text-[20px]">
         <p>With Asusu, you don't just save you grow. Our platform makes group savings simple,
-           transparent and rewarding. 
-           Partner with us today an experience the power of unity.
+          transparent and rewarding.
+          Partner with us today an experience the power of unity.
         </p>
       </div>
     </div>
@@ -96,19 +102,20 @@ const features = [
     <!-- Import and use About component -->
     <About :features="features" />
   </div>
-  
+
   <!-- Footer/CTA Section - FIXED AND CENTERED -->
   <div class="bg-blue-600 rounded-[30px] mx-4 lg:mx-60 mt-20 py-10 lg:py-17">
     <div class="text-center text-white  mx-auto px-4 lg:flex lg:px-10">
       <div>
         <h2 class="text-2xl lg:text-3xl font-bold mb-4 lg:text-start">Reach New Horizons</h2>
-       <p class="text-lg lg:text-xl leading-relaxed lg:text-start">
-         Embrace the savings Evolution! Sign up 
-         today and unlock new possibilities to 
-         grow with our friendly and powerful solution.
-       </p>
-     </div>
-     <div class="flex items-center justify-center"><img src="/src/assets/images/images.jpeg" alt="" class="hidden lg:block" width="250px" height="250px" style="border-radius: 20px;"></div>
+        <p class="text-lg lg:text-xl leading-relaxed lg:text-start">
+          Embrace the savings Evolution! Sign up
+          today and unlock new possibilities to
+          grow with our friendly and powerful solution.
+        </p>
+      </div>
+      <div class="flex items-center justify-center"><img src="/src/assets/images/images.jpeg" alt=""
+          class="hidden lg:block" width="250px" height="250px" style="border-radius: 20px;"></div>
     </div>
   </div>
 

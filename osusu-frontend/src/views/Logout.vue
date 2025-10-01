@@ -4,55 +4,60 @@
 </template>
 
 <script setup>
-import { useAuthStore } from "@/stores/auth";
-import { useRouter } from "vue-router";
-import { onMounted, ref } from 'vue';
-import { useAuthApi } from '@/composables/api/useAuthApi';
+import { useAuthStore } from "@/stores/auth"
+import { useRouter } from "vue-router"
+import { onMounted } from "vue"
+import { useAuthApi } from "@/composables/api/useAuthApi"
 
-const auth = useAuthStore();
-const router = useRouter();
+const auth = useAuthStore()
+const router = useRouter()
 const { logoutApi } = useAuthApi()
-onMounted(
-  async () => {
-    const accessToken = auth.accessToken
-    const refreshToken = auth.refreshToken;
-    async function refresh(access_token) {
-      try {
-        // try to log user out
-        const message = (await logoutApi(access_token)).message
+
+onMounted(async () => {
+  const accessToken = auth.accessToken
+  const refreshToken = auth.refreshToken
+
+  async function tryLogout(token) {
+    try {
+      // attempt to log user out with token
+      auth.logout()
+      router.push({ name: "Login" })
+    } catch (error) {
+      const status = error.response?.status
+      const message = error.response?.data?.message
+
+      if (status === 400 || status === 404) {
+        // already logged out or not found
         auth.logout()
-        router.push({ name: "Login" });
-      } catch (error) {
-        const status = error.response.status
-        const message = error.response.data.message
-        const jwt_access_token = ref(null)
-        // if user was already logged out
-        if (status == 400) {
+        router.push({ name: "Login" })
+        return
+      }
+
+      if (status === 403) {
+        // token expired → try refreshing
+        const refresh_response = await auth.tokenRefresh(refreshToken)
+        if (!refresh_response.response) {
+          // refresh worked → retry logout with new token
+          const newAccessToken = refresh_response.data.access_token
+          return tryLogout(newAccessToken)
+        } else {
+          // refresh failed → force logout
           auth.logout()
-          router.push({ name: "Login" });
-        }
-        // if not logged out but access token has expired
-        if (status == 403) {
-          const data = await auth.tokenRefresh(refreshToken)
-          // if user hass the correct refresh code
-          if (!data.response) {
-            jwt_access_token.value = data
-            const newAccessToken = jwt_access_token.value.data.access_token
-            refresh(newAccessToken)
-          } else {
-            // if not 
-            auth.logout()
-            router.push({ name: "Login" });
-          }
-        }
-        if (status == 404) {
-          auth.logout()
-          router.push({ name: "Login" });
+          router.push({ name: "Login" })
+          return
         }
       }
-    } refresh(accessToken)
+
+      // fallback (500, network error, etc.)
+      auth.logout()
+      router.push({ name: "Login" })
+    }
   }
-)
+
+  // run once on mount
+  tryLogout(accessToken)
+})
+
 </script>
 
 
