@@ -39,5 +39,5 @@ export function useAuthApi() {
     return data
   }
 
-  return { loginApi, logoutApi, registerApi }
+  return { loginApi, logoutApi, registerApi, getUserInfo }
 }

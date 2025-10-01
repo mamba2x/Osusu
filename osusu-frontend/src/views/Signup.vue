@@ -59,6 +59,9 @@ const handleSignUp = async () => {
     // Perform signup logic here (e.g., API call)
     const user = await registerUser(userDetails)
     if (!user.response) {
+      if (!user.userInfo) {
+        return errors.value.regError = "Server Down"
+      }
       const tokens = {
         accessToken: user.accessToken,
         refreshToken: user.userInfo.jwt_refresh_token,

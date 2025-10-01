@@ -53,6 +53,10 @@ const handleLogin = async () => {
     // Perform login logic here (e.g., API call)
     const user = await loginUser(form.value.email, form.value.password)
     if (!user.response) {
+      if (!user.userInfo) {
+        return errors.value.loginError = "Server Down"
+      }
+      // If login is successful, store user data and redirect
       const tokens = {
         accessToken: user.accessToken,
         refreshToken: user.userInfo.jwt_refresh_token,
@@ -60,10 +64,8 @@ const handleLogin = async () => {
 
       userStore.userData = user.userInfo
       auth.login(tokens);
-      router.push({ name: "Dashboard" });
+      return router.push({ name: "Dashboard" });
 
-
-      // router.push('/dashboard')
     }
     errors.value.loginError = `${user.response.data.message}`
   }

@@ -12,8 +12,8 @@
       </div>
       <!-- user name -->
       <div class="w-full flex flex-col  px-[3%] text-[24px] mb-[40px]">
-        <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, {{ userDetails.firstname ??
-          userDetails.message }}</h1>
+        <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, {{ userDetails.firstname ?? ''
+          }}</h1>
         <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
           <h2 class="text-gray-500 text-sm font-medium mb-2">Total Balance</h2>
           <div class="flex items-baseline mb-4 ">
@@ -109,12 +109,22 @@ import TopBar from '@/components/topBar.vue';
 import { useGroupStore } from '@/stores/groups';
 import { useUserStore } from '@/stores/userAuth';
 import { ref } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+
+const auth = useAuthStore();
 
 const userStore = useUserStore();
 const userDetails = ref()
-console.log(userStore.userData)
+const userTest = ref()
 if (!userStore.userData) {
-  userDetails.value = { message: "No user data" }
+  userTest.value = await userStore.getUser(auth.accessToken)
+  if (!userTest.value.userInfo) {
+    userDetails.value = null
+
+  } else {
+
+    userDetails.value = userTest.value.userInfo
+  }
 } else {
   userDetails.value = userStore.userData
 }
@@ -124,7 +134,6 @@ const count = 0;
 var mainGroups = []
 for (let index = 0; index < 3; index++) {
   mainGroups.push(groups[index]);
-
 }
 // console.log(mainGroups)
 

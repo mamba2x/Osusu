@@ -10,9 +10,7 @@
         <!-- <Topnav /> -->
         <TopBar />
       </div>
-      <!-- user name -->
       <div class="w-full flex flex-col font-[500] px-[3%] text-[24px] mb-[40px]">
-        <!-- <h2 class="text-2xl font-bold text-gray-800">My Groups</h2> -->
         <div class="flex flex-col md:flex-row w-full justify-between mb-5">
           <h1 class="mb-3 md:mb-0"><i class="fas fa-users"></i> My Groups</h1>
           <div class="flex gap-4 text-[13px] md:text-[15px]">
