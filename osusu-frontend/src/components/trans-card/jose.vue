@@ -1,7 +1,7 @@
 <template>
-<div class="grid grid-cols-1 md:grid-cols-3  mb-8">
-    <div v-for="value in source" >
-     <div class="bg-white rounded-xl shadow-lg p-6 ml-3 mr-2 w-74 flex justify-between">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+    <div v-for="value in source" class="mx-4 sm:ml-3">
+     <div class="bg-white rounded-xl shadow-lg p-6 w-full sm:w-72 flex justify-between">
         <div>
             <p class="text-gray-500 text-sm capitalize">{{ value.test }}</p>
             <h1 class="text-2xl font-bold text-gray-800">{{value.num}}</h1>
