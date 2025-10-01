@@ -13,7 +13,7 @@
       <!-- user name -->
       <div class="w-full flex flex-col  px-[3%] text-[24px] mb-[40px]">
         <h1 class="mb-5 font-[600]"><span class="text-2xl">👋</span>Welcome, {{ userDetails.firstname ?? ''
-          }}</h1>
+        }}</h1>
         <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
           <h2 class="text-gray-500 text-sm font-medium mb-2">Total Balance</h2>
           <div class="flex items-baseline mb-4 ">
@@ -131,14 +131,17 @@ var mainGroups = []
 // for (let index = 0; index < 3; index++) {
 //   mainGroups.push(groups[index])
 // }
-if (mygroups.length < 3) {
-  for (let index = 0; index < mygroups.length; index++) {
-    mainGroups.push(mygroups[index])
+if (mygroups) {
+
+  if (mygroups.length < 3) {
+    for (let index = 0; index < mygroups.length; index++) {
+      mainGroups.push(mygroups[index])
+    }
   }
-}
-if (mygroups.length > 3) {
-  for (let index = 0; index < 3; index++) {
-    mainGroups.push(mygroups[index])
+  if (mygroups.length > 3) {
+    for (let index = 0; index < 3; index++) {
+      mainGroups.push(mygroups[index])
+    }
   }
 }
 // console.log(mygroups)

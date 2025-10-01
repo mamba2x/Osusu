@@ -4,7 +4,7 @@
         <div class="flex items-center text-[16px]">
             <!-- Avatar box with background image -->
             <div class="min-w-[48px] h-[48px] rounded-full flex items-center justify-center bg-[gray] mr-4 bg-cover bg-center"
-                :style="{ backgroundImage: `url(${bgImage})` }">
+                :style="{ backgroundImage: `url(/src/assets/images/${bgImage})` }">
                 <!-- <i class="fas fa-users text-white drop-shadow-md"></i> -->
             </div>
             <div class="">
@@ -16,8 +16,8 @@
             </div>
         </div>
         <div class="text-right text-[16px]">
-            <p class="font-medium text-gray-800">₦{{ contributionAmount }}</p>
-            <p class="text-xs text-gray-500">{{ members }} members</p>
+            <p class="font-medium text-gray-800">Contibution: ₦{{ contributionAmount }}</p>
+            <p class="text-xs text-gray-500">Members: {{ members }}</p>
         </div>
     </a>
 </template>
