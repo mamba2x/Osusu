@@ -87,7 +87,7 @@ const handleLogin = async () => {
             <h1 class="text-[30px] font-bold text-gray-800">Osusu</h1>
           </div>
           <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
-            Bridging the Gap between Groups and Opportunites
+            Reinventing savings through community-driven goals
           </h1>
           <p class="mt-4 text-gray-600 text-lg">
             Empowering communities to manage their savings securely while creating room for members to achieve
@@ -103,7 +103,8 @@ const handleLogin = async () => {
             <h1 class="text-[30px] font-bold text-gray-800">Osusu</h1>
           </div>
           <!-- <img src="/src/assets/images/logo.svg" alt="Logo" width="150px" class="mb-4"> -->
-          <h2 class="text-xl font-bold text-gray-900">Bridging Gaps in Rural Microfinance</h2>
+          <h2 class="text-xl font-bold text-gray-900">Reinventing savings through community-driven goals
+          </h2>
         </div>
       </div>
 
